@@ -1,0 +1,107 @@
+apiVersion: v1
+items:
+- apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    annotations:
+      alb.ingress.kubernetes.io/backend-protocol-version: HTTP1
+      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-south-1:071142024154:certificate/ca978875-38ba-4f6b-9898-fdf5099a28ee
+      alb.ingress.kubernetes.io/group.name: atc-alb
+      alb.ingress.kubernetes.io/healthcheck-interval-seconds: "10"
+      alb.ingress.kubernetes.io/healthcheck-timeout-seconds: "5"
+      alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+      alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=600
+      alb.ingress.kubernetes.io/load-balancer-name: atc-alb
+      alb.ingress.kubernetes.io/scheme: internet-facing
+      alb.ingress.kubernetes.io/security-groups: sg-08032dcfa135d67c7,sg-0fd17ed6ee6df4e37
+      alb.ingress.kubernetes.io/subnets: subnet-06cc6231d3383cc53,subnet-0fbb1ff53072d6d93,subnet-036ccb0611e0cc815
+      alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS-1-2-Ext-2018-06
+      alb.ingress.kubernetes.io/ssl-redirect: "443"
+      alb.ingress.kubernetes.io/tags: environment=prod,product=sdx,customer=sdx
+      alb.ingress.kubernetes.io/target-type: ip
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"alb.ingress.kubernetes.io/backend-protocol-version":"HTTP1","alb.ingress.kubernetes.io/certificate-arn":"arn:aws:acm:us-east-1:729980925064:certificate/54766a80-f677-4710-9537-1617f0119b03","alb.ingress.kubernetes.io/group.name":"recordaize-non-prod","alb.ingress.kubernetes.io/healthcheck-interval-seconds":"10","alb.ingress.kubernetes.io/healthcheck-timeout-seconds":"5","alb.ingress.kubernetes.io/listen-ports":"[{\"HTTP\": 80}, {\"HTTPS\":443}]","alb.ingress.kubernetes.io/load-balancer-attributes":"idle_timeout.timeout_seconds=600","alb.ingress.kubernetes.io/load-balancer-name":"recordaize-non-prod-alb","alb.ingress.kubernetes.io/scheme":"internet-facing","alb.ingress.kubernetes.io/security-groups":"sg-027cd2619fb019cf2,sg-010c1ff73ff341335,sg-0a2d67998068c0c5c,sg-0f855b9be90e7375a","alb.ingress.kubernetes.io/ssl-policy":"ELBSecurityPolicy-TLS-1-2-Ext-2018-06","alb.ingress.kubernetes.io/ssl-redirect":"443","alb.ingress.kubernetes.io/tags":"environment=non-prod,product=sdx,customer=womba","alb.ingress.kubernetes.io/target-type":"ip","meta.helm.sh/release-name":"sdx-kube-prometheus-stack","meta.helm.sh/release-namespace":"sdx-monitoring"},"creationTimestamp":"2024-12-23T19:44:11Z","finalizers":["group.ingress.k8s.aws/recordaize-non-prod"],"generation":1,"labels":{"cluster":"sdx","customer":"sdx","environment":"prod"},"name":"sdx-kube-prometheus-stack-grafana","namespace":"sdx-monitor","resourceVersion":"5483963","uid":"95c40c8c-6dde-4839-a1b2-22ad825eecad"},"spec":{"ingressClassName":"alb","rules":[{"host":"sdx-grafana-nprod.app.recordaize.com","http":{"paths":[{"backend":{"service":{"name":"monitoring-grafana","port":{"number":80}}},"path":"/","pathType":"Prefix"}]}}]},"status":{"loadBalancer":{"ingress":[{"hostname":"recordaize-non-prod-alb-1692096978.us-east-1.elb.amazonaws.com"}]}}}
+      meta.helm.sh/release-namespace: monitoring
+    creationTimestamp: "2024-12-24T06:39:06Z"
+    finalizers:
+    - group.ingress.k8s.aws/atc-alb
+    generation: 1
+    labels:
+      cluster: sdx
+      customer: sdx
+      environment: prod
+    name: grafana
+    namespace: monitoring
+    resourceVersion: "5675130"
+    uid: 1df49105-14ea-4c71-b10a-957e61926fda
+  spec:
+    ingressClassName: alb
+    rules:
+    - host: grafana-atc.servicedx.com
+      http:
+        paths:
+        - backend:
+            service:
+              name: atc-monitoring-grafana
+              port:
+                number: 80
+          path: /
+          pathType: Prefix
+  status:
+    loadBalancer:
+      ingress:
+      - hostname: 
+- apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    annotations:
+      alb.ingress.kubernetes.io/backend-protocol-version: HTTP1
+      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-south-1:071142024154:certificate/4cb86549-4c3d-49e6-bd3c-7173d87d02b5
+      alb.ingress.kubernetes.io/group.name: atc-alb
+      alb.ingress.kubernetes.io/healthcheck-interval-seconds: "10"
+      alb.ingress.kubernetes.io/healthcheck-timeout-seconds: "5"
+      alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+      alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=600
+      alb.ingress.kubernetes.io/load-balancer-name: atc-alb
+      alb.ingress.kubernetes.io/scheme: internet-facing
+      alb.ingress.kubernetes.io/security-groups: sg-08032dcfa135d67c7,sg-0fd17ed6ee6df4e37
+      alb.ingress.kubernetes.io/subnets: subnet-06cc6231d3383cc53,subnet-0fbb1ff53072d6d93,subnet-036ccb0611e0cc815
+      alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS-1-2-Ext-2018-06
+      alb.ingress.kubernetes.io/ssl-redirect: "443"
+      alb.ingress.kubernetes.io/tags: environment=prod,product=sdx,customer=sdx
+      alb.ingress.kubernetes.io/target-type: ip
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"alb.ingress.kubernetes.io/backend-protocol-version":"HTTP1","alb.ingress.kubernetes.io/certificate-arn":"arn:aws:acm:us-east-1:729980925064:certificate/54766a80-f677-4710-9537-1617f0119b03","alb.ingress.kubernetes.io/group.name":"recordaize-non-prod","alb.ingress.kubernetes.io/healthcheck-interval-seconds":"10","alb.ingress.kubernetes.io/healthcheck-timeout-seconds":"5","alb.ingress.kubernetes.io/listen-ports":"[{\"HTTP\": 80}, {\"HTTPS\":443}]","alb.ingress.kubernetes.io/load-balancer-attributes":"idle_timeout.timeout_seconds=600","alb.ingress.kubernetes.io/load-balancer-name":"recordaize-non-prod-alb","alb.ingress.kubernetes.io/scheme":"internet-facing","alb.ingress.kubernetes.io/security-groups":"sg-027cd2619fb019cf2,sg-010c1ff73ff341335,sg-0a2d67998068c0c5c,sg-0f855b9be90e7375a","alb.ingress.kubernetes.io/ssl-policy":"ELBSecurityPolicy-TLS-1-2-Ext-2018-06","alb.ingress.kubernetes.io/ssl-redirect":"443","alb.ingress.kubernetes.io/tags":"environment=non-prod,product=sdx,customer=womba","alb.ingress.kubernetes.io/target-type":"ip","meta.helm.sh/release-name":"sdx-kube-prometheus-stack","meta.helm.sh/release-namespace":"sdx-monitoring"},"creationTimestamp":"2024-12-23T19:44:11Z","finalizers":["group.ingress.k8s.aws/recordaize-non-prod"],"generation":1,"labels":{"cluster":"sdx","customer":"sdx","environment":"prod"},"name":"sdx-kube-prometheus-stack-prometheus","namespace":"sdx-monitor","resourceVersion":"5483963","uid":"95c40c8c-6dde-4839-a1b2-22ad825eecad"},"spec":{"ingressClassName":"alb","rules":[{"host":"sdx-prometheus-nprod.app.recordaize.com","http":{"paths":[{"backend":{"service":{"name":"monitor-prometheus-server","port":{"number":80}}},"path":"/","pathType":"Prefix"}]}}]},"status":{"loadBalancer":{"ingress":[{"hostname":"recordaize-non-prod-alb-1692096978.us-east-1.elb.amazonaws.com"}]}}}
+      meta.helm.sh/release-namespace: monitoring
+    creationTimestamp: "2024-12-24T06:58:42Z"
+    finalizers:
+    - group.ingress.k8s.aws/atc-alb
+    generation: 1
+    labels:
+      cluster: sdx
+      customer: sdx
+      environment: prod
+    name: prometheus
+    namespace: monitoring
+    resourceVersion: "5680738"
+    uid: 786d102a-bb94-440f-a0ba-3989d0f04a8d
+  spec:
+    ingressClassName: alb
+    rules:
+    - host: prometheus-atc.servicedx.com
+      http:
+        paths:
+        - backend:
+            service:
+              name: prometheus-atc-server
+              port:
+                number: 80
+          path: /
+          pathType: Prefix
+  status:
+    loadBalancer:
+      ingress:
+      - hostname: 
+kind: List
+metadata:
+  resourceVersion: ""
