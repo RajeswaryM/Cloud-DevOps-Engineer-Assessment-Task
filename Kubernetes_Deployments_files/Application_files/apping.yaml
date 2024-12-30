@@ -1,0 +1,57 @@
+apiVersion: v1
+items:
+- apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    annotations:
+      alb.ingress.kubernetes.io/backend-protocol-version: HTTP1
+      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-south-1:071142024154:certificate/7c3a46e0-ba71-47f1-bf37-74e1d7544472
+      alb.ingress.kubernetes.io/group.name: atc-alb
+      alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+      alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=600
+      alb.ingress.kubernetes.io/load-balancer-name: atc-alb
+      alb.ingress.kubernetes.io/healthcheck-interval-seconds: "10"
+      alb.ingress.kubernetes.io/healthcheck-path: /
+      alb.ingress.kubernetes.io/healthcheck-timeout-seconds: "5"
+      alb.ingress.kubernetes.io/scheme: internet-facing
+      alb.ingress.kubernetes.io/security-groups: sg-08032dcfa135d67c7,sg-0fd17ed6ee6df4e37
+      alb.ingress.kubernetes.io/subnets: subnet-06cc6231d3383cc53,subnet-0fbb1ff53072d6d93,subnet-036ccb0611e0cc815
+      alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS-1-2-Ext-2018-06
+      alb.ingress.kubernetes.io/ssl-redirect: "443"
+      
+      alb.ingress.kubernetes.io/tags: environment=prod,product=sdx,customer=sdx
+      alb.ingress.kubernetes.io/target-type: ip
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"alb.ingress.kubernetes.io/backend-protocol-version":"HTTP1","alb.ingress.kubernetes.io/certificate-arn":"arn:aws:acm:us-east-1:233431242547:certificate/487799cc-5e9f-49a2-b2b9-5940ca6a8525","alb.ingress.kubernetes.io/group.name":"sdx-nonprod-qa","alb.ingress.kubernetes.io/listen-ports":"[{\"HTTP\": 80}, {\"HTTPS\":443}]","alb.ingress.kubernetes.io/load-balancer-attributes":"idle_timeout.timeout_seconds=600","alb.ingress.kubernetes.io/load-balancer-name":"sdx-qa-alb","alb.ingress.kubernetes.io/scheme":"internet-facing","alb.ingress.kubernetes.io/security-groups":"sg-054c9a3c1f3f481f3,sg-061c187a4864de7ef","alb.ingress.kubernetes.io/ssl-policy":"ELBSecurityPolicy-TLS-1-2-Ext-2018-06","alb.ingress.kubernetes.io/ssl-redirect":"443","alb.ingress.kubernetes.io/subnets":"sdx-vpc-public-ap-south-1a,sdx-vpc-public-ap-south-1b,sdx-vpc-public-ap-south-1c","alb.ingress.kubernetes.io/tags":"environment=prod,product=sdx,customer=sdx","alb.ingress.kubernetes.io/target-type":"ip"},"labels":{"cluster":"sdx","customer":"sdx","environment":"nonprod"},"name":"servicedx-ui","namespace":"sdx-qa"},"spec":{"ingressClassName":"sdx-alb-prod","rules":[{"host":"qa.servicedx.com","http":{"paths":[{"backend":{"service":{"name":"servicedx-ui","port":{"number":8080}}},"path":"/","pathType":"Prefix"}]}}]}}
+    creationTimestamp: "2023-04-04T11:46:31Z"
+    finalizers:
+    - group.ingress.k8s.aws/atc-alb
+    generation: 1
+    labels:
+      cluster: sdx
+      customer: sdx
+      environment: prod
+    name: service-ui
+    namespace: atc-dev
+    resourceVersion: "1013849593"
+    uid: 22e59fbd-217f-453f-8099-67a777da4143
+  spec:
+    ingressClassName: alb
+    rules:
+    - host: atc.servicedx.com
+      http:
+        paths:
+        - backend:
+            service:
+              name: service-ui
+              port:
+                number: 80
+          path: /
+          pathType: Prefix
+  status:
+    loadBalancer:
+      ingress:
+      - hostname: 
+kind: List
+metadata:
+  resourceVersion: ""

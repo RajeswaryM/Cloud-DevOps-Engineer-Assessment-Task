@@ -1,0 +1,43 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"servicedx-ui","env":"qa","release":"1.0.0"},"name":"servicedx-ui","namespace":"sdx-qa"},"spec":{"externalTrafficPolicy":"Cluster","ports":[{"name":"http","port":8080,"protocol":"TCP","targetPort":8080}],"selector":{"app":"servicedx-ui","env":"qa","release":"1.0.0"},"sessionAffinity":"None","type":"NodePort"},"status":{"loadBalancer":{}}}
+    creationTimestamp: "2023-01-13T04:36:17Z"
+    labels:
+      app: service-ui
+      env: dev
+      release: 1.0.0
+    name: service-ui
+    namespace: atc-dev
+    resourceVersion: "869805420"
+    uid: 9f17c9ef-a52b-4f49-9228-4ae2e6e23afd
+  spec:
+    clusterIP: 
+    clusterIPs:
+    
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: http
+      nodePort: 
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      app: service-ui
+      env: dev
+      release: 1.0.0
+    sessionAffinity: None
+    type: NodePort
+  status:
+    loadBalancer: {}
+kind: List
+metadata:
+  resourceVersion: ""
